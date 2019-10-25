@@ -8,7 +8,7 @@ export function fetchWeather(query) {
   return dispatch => {
     dispatch({ type: FETCH_WEATHER_START });
     axios
-      .get(`https://metaweather.com/api/location/search/?query=${query}`)
+      .get(`https://www.metaweather.com/api/location/search/?query=san`)
       .then(res => {
         dispatch({ type: FETCH_WEATHER_SUCCESS, payload: res.data });
       })
