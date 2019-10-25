@@ -3,16 +3,18 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import logger from "redux-logger";
 import thunk from "redux-thunk";
-import { reducer } from "./reducers/search";
+import { reducer as searchReducer } from "./reducers/search";
+import { reducer as detailsReducer } from "./reducers/details";
 
-// const rootReducer = combineReducers({
-//   search: searchReducer
-// });
+const rootReducer = combineReducers({
+  search: searchReducer,
+  details: detailsReducer
+});
 
-const store = createStore(reducer, applyMiddleware(thunk));
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <Provider store={store}>

@@ -41,9 +41,9 @@ const SearchBar = (props) => {
 
 function mapStateToProps(state) {
     return {
-        searchResults: state.searchResults,
-        isLoading: state.isLoading,
-        error: state.error
+        searchResults: state.search.searchResults,
+        isLoading: state.search.isLoading,
+        error: state.search.error
     }
 }
 const mapDispatchToProps = {
