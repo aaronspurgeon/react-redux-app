@@ -5,8 +5,7 @@ export default function Location(props) {
     return (
         <div>
             {props.searchResults.map((item, index) => (
-                // <LocationList item={item} key={index} />
-                console.log(item)
+                <LocationList item={item} key={index} />
             ))}
         </div>
     )

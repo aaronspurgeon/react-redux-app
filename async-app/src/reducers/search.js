@@ -5,14 +5,7 @@ import {
 } from "../actions/search";
 
 export const initialState = {
-  searchResults: [
-    {
-      title: null,
-      location_type: null,
-      woeid: null,
-      latt_long: null
-    }
-  ],
+  searchResults: [],
   isLoading: false,
   error: ""
 };
@@ -27,15 +20,7 @@ export function reducer(state = initialState, action) {
     case FETCH_WEATHER_SUCCESS:
       return {
         ...state,
-        searchResults: [
-          ...state.searchResults,
-          {
-            title: action.payload.title,
-            location_type: action.payload.location_type,
-            woeid: action.payload.woeid,
-            latt_long: action.payload.latt_long
-          }
-        ],
+        searchResults: action.payload,
         isLoading: false
       };
     case FETCH_WEATHER_ERROR:

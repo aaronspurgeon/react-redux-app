@@ -9,9 +9,6 @@ const SearchBar = (props) => {
     const handleChanges = e => {
         setQuery(e.target.value)
     }
-    useEffect(() => {
-        props.fetchWeather()
-    }, [])
 
     const handleSubmit = e => {
         e.preventDefault();
@@ -26,9 +23,17 @@ const SearchBar = (props) => {
                 <button type='submit'>Search</button>
             </form>
             {/* <Location searchResults={props.searchResults} /> */}
-            {props.searchResults.map((item, index) => {
-                return <h2 key={index}>{item.title}</h2>
-            })}
+            {/* {props.searchResults.map((item, index) => {
+                return <h2 key={index}>City: {item.title}</h2>
+            })} */}
+            {props.error && <p>Error: {props.error}</p>}
+            {props.isLoading ? (
+                <div>
+                    <h1>Loading</h1>
+                </div>
+            ) : (
+                    <Location searchResults={props.searchResults} />
+                )}
         </div>
 
     )
@@ -36,10 +41,11 @@ const SearchBar = (props) => {
 
 function mapStateToProps(state) {
     return {
-        searchResults: state.searchResults
+        searchResults: state.searchResults,
+        isLoading: state.isLoading,
+        error: state.error
     }
 }
-
 const mapDispatchToProps = {
     fetchWeather
 }
